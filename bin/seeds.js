@@ -6,11 +6,12 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-
+const Post= require('../models/Post')
+const Events= require('../models/Events.js')
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/lab-nodemailer', {useNewUrlParser: true})
+  .connect('mongodb://localhost/skate-society', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -18,24 +19,55 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-let users = [
+  let users = [
+    {
+      username: "Dani",
+      password: bcrypt.hashSync("Dani", bcrypt.genSaltSync(bcryptSalt)),
+      email:"dani@gmail.com",
+      confpass:bcrypt.hashSync("Dani", bcrypt.genSaltSync(bcryptSalt)),
+      status:"Pending Confirmation",
+    },
+    {
+      username: "Miguel",
+      password: bcrypt.hashSync("Miguel", bcrypt.genSaltSync(bcryptSalt)),
+      email:"migueliron166@gmail.com",
+      confpass:bcrypt.hashSync("Miguel", bcrypt.genSaltSync(bcryptSalt)),
+      status:"Active",
+    }
+  ]
+
+let post=[
   {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-  },
-  {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    picture:"URL",
+    coments:'Hola que tal',
+    video:"URL",
+    ratio:5
   }
 ]
 
-User.deleteMany()
-.then(() => {
+let event=[
+  {
+    title:'String',
+    text:'String',
+    place:'String',
+    date:new Date(),
+    join_us:[]
+  }
+]
+
+
+
+
+Promise.all([User.deleteMany(),Events.deleteMany(),Post.deleteMany()])
+
+
+.then(()=>{
   return User.create(users)
 })
 .then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
+  post[0].author= usersCreated[0].id;
+  event[0].join_us.push(usersCreated[0].id)
+  return Promise.all([Post.create(post),Events.create(event)])
 })
 .then(() => {
   // Close properly the connection to Mongoose
