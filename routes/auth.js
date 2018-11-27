@@ -21,12 +21,11 @@ router.get ('/profile',(req,res,next)=>{
 
 
 router.post("/login", passport.authenticate("local", {
-
   successRedirect: "/auth/profile",
-
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
+
 }));
 
 router.get("/signup", (req, res, next) => {
@@ -83,7 +82,7 @@ router.post("/signup", (req, res, next) => {
         html: `<a href="http://localhost:3000/auth/confirm/${newUser.confpass}">confirm<a>`,
       },
     ).then(() => {
-      res.redirect("confirm/:confpass");
+      res.redirect("/");
     })
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
