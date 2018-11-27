@@ -15,6 +15,7 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
+
   let users = [
     {
       username: "Dani",
@@ -31,6 +32,7 @@ mongoose
       status:"Active",
     }
   ]
+
 let post=[
   {
     picture:"URL",
@@ -39,6 +41,7 @@ let post=[
     ratio:5
   }
 ]
+
 let event=[
   {
     title:'String',
@@ -48,7 +51,9 @@ let event=[
     join_us:[]
   }
 ]
+
 Promise.all([User.deleteMany(),Events.deleteMany(),Post.deleteMany()])
+
 .then(()=>{
   return User.create(users)
 })

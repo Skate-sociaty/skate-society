@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
@@ -19,7 +21,9 @@ router.get ('/profile',(req,res,next)=>{
 
 
 router.post("/login", passport.authenticate("local", {
+
   successRedirect: "/auth/profile",
+
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
@@ -34,8 +38,10 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
   const confpass = req.body.confpass;
   const email = req.body.email;
+
   const createdAt=req.body.createdAt;
   const updatedAt=req.body.updatedAt;
+
  
   if (confpass!==password){
     res.render("auth/signup", { messageWrongPass: "wrong password when you try to confirm" })
@@ -60,9 +66,11 @@ router.post("/signup", (req, res, next) => {
       username,
       password: hashPass,
       email,
+
       confpass:hashPassConf,
       createdAt,
       updatedAt
+
     });
 
     newUser.save()
