@@ -1,15 +1,12 @@
 // Seeds file that remove all users and create 2 new users
-
 // To execute this seed, run from the root of the project
 // $ node bin/seeds.js
-
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Post= require('../models/Post')
 const Events= require('../models/Events.js')
 const bcryptSalt = 10;
-
 mongoose
   .connect('mongodb://localhost/skate-society', {useNewUrlParser: true})
   .then(x => {
@@ -55,11 +52,7 @@ let event=[
   }
 ]
 
-
-
-
 Promise.all([User.deleteMany(),Events.deleteMany(),Post.deleteMany()])
-
 
 .then(()=>{
   return User.create(users)

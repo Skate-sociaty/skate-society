@@ -2,8 +2,12 @@
 
 <form action="/auth/signup" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input id="username" type="text" name="username" placeholder="Your name">
 
+  <br><br>
+
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" placeholder="Your email">
   <br><br>
 
   <label for="password">Password</label>
@@ -14,6 +18,16 @@
   {{/if}}
 
   <br><br>
+
+  <label for="confpass">Confirm Password</label>
+  <input id="confpass" type="password" name="confpass" placeholder="Confirm your password">
+  <br>
+
+  {{#if messageWrongPass }}
+    <div class="error-message">{{ messageWrongPass }}</div>
+  {{/if}}
+
+  <br></br>
 
   <button>Create account</button>
 
