@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post')
 const uploadCloud = require('../config/cloudinary');
-const { passport, ensureLoggedOut } = require('connect-ensure-login');
-const passport=require ('passport');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const isActive = require("../middleware/confirmEmail");
 
 
 
 
-router.get('/views/auth/profile', passport('/views/auth/login'), (req, res, next) => {
+router.get('/views/auth/profile', ensureLoggedIn('/views/auth/login'), (req, res, next) => {
   res.render('../routes/profile', req.user);
 });
-router.post('/profile', [passport('/login'), uploadCloud.single('photo')] ,(req,res,next)=>{
+router.post('/profile', [ensureLoggedIn('/login'), uploadCloud.single('photo')] ,(req,res,next)=>{
   const {content} = req.body;
   const creatorId = req.user._id;
   const picPath = req.file.url;

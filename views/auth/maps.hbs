@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>SkateParks Map</title>
+  <style>
+    #map {
+        height: 500px;
+        width: 100%;
+       }
+    </style>
+</head>
+
+<body>
+  <h3>SkateParks Map</h3>
+  <div id="map"></div>
+
+  <form method="POST" action="/maps">
+    <input type="text" name="title" placeholder="name">
+    <input type="text" name="map" placeholder="description">
+
+    <label>Address</label>
+    <input type="hidden" name="lat" placeholder="latitude">
+    <input type="hidden" name="lng" placeholder="longitude">
+    <div style="color:green" class="locationStatus"></div>
+    <input type="submit" name="">
+    
+  </form>
+
+  <script>
+    window.parks = {{{parks}}}
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{key}}"></script>
+  <script type="text/javascript" src="/javascripts/main.js"></script>
+</body>
+
+</html>

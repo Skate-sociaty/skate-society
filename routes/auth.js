@@ -1,11 +1,12 @@
 require('dotenv').config();
-
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const transporter=require('../mail/transporter')
-require('dotenv').config()
+const isActive = require("../middleware/confirmEmail");
+const moment = require("moment");
+const Event = require("../models/Events")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -26,10 +27,16 @@ router.post("/login", passport.authenticate("local", {
   failureFlash: true,
   passReqToCallback: true
 
-}));
+})
+
+);
 
 router.get("/signup", (req, res, next) => {
+  
   res.render("auth/signup");
+});
+router.get("/pepe",isActive(), (req, res, next) => {
+  res.render("auth/pepe");
 });
 
 router.post("/signup", (req, res, next) => {
@@ -40,9 +47,10 @@ router.post("/signup", (req, res, next) => {
 
   const createdAt=req.body.createdAt;
   const updatedAt=req.body.updatedAt;
-
+  
  
   if (confpass!==password){
+    
     res.render("auth/signup", { messageWrongPass: "wrong password when you try to confirm" })
     return
   }
@@ -65,11 +73,7 @@ router.post("/signup", (req, res, next) => {
       username,
       password: hashPass,
       email,
-      confpass:hashPassConf,
-      createdAt,
-      updatedAt
-
-
+      confpass:hashPassConf
     });
 
     newUser.save()
@@ -79,7 +83,8 @@ router.post("/signup", (req, res, next) => {
         to: email,
         subject: 'Confirmation message',
         text: 'Confirmation message',
-        html: `<a href="http://localhost:3000/auth/confirm/${newUser.confpass}">confirm<a>`,
+        html: `<h1>Confirmation message</h1>
+        <a href="http://localhost:3000/auth/confirm/${encodeURIComponent(newUser.confpass)}">confirm<a>`,
       },
     ).then(() => {
       res.redirect("/");
@@ -113,6 +118,8 @@ router.get("/confirm/:confpass", (req, res) => {
       return err
     })
 })
+
+
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
