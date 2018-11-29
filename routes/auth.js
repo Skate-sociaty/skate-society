@@ -80,7 +80,7 @@ router.post("/signup", (req, res, next) => {
         subject: 'Confirmation message',
         text: 'Confirmation message',
         html: `<a href="http://localhost:3000/auth/confirm/${newUser.confpass}">confirm<a>`,
-      },
+      }
     ).then(() => {
       res.redirect("/");
     })

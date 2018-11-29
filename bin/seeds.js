@@ -18,6 +18,7 @@ mongoose
 
   let users = [
     {
+      imageURL,
       username: "Dani",
       password: bcrypt.hashSync("Dani", bcrypt.genSaltSync(bcryptSalt)),
       email:"dani@gmail.com",
@@ -25,6 +26,7 @@ mongoose
       status:"Pending Confirmation",
     },
     {
+      imageURL,
       username: "Miguel",
       password: bcrypt.hashSync("Miguel", bcrypt.genSaltSync(bcryptSalt)),
       email:"migueliron166@gmail.com",
@@ -32,10 +34,12 @@ mongoose
       status:"Active",
     }
   ]
+  
 
 let post=[
   {
-    picture:"URL",
+    pictureURL ,
+    text:'esto es un texto de muestra',
     coments:'Hola que tal',
     video:"URL",
     ratio:5
