@@ -9,7 +9,7 @@ const isActive = require("../middleware/confirmEmail");
 
 
 
-router.post('/', [ensureLoggedIn('/auth/login'), uploadCloud.single('photo')], (req, res, next) => {
+router.post('/', [ensureLoggedIn('/auth/login'),isActive(), uploadCloud.single('photo')], (req, res, next) => {
   const {text,
     content
   } = req.body;
@@ -24,7 +24,6 @@ router.post('/', [ensureLoggedIn('/auth/login'), uploadCloud.single('photo')], (
     picture: pictureURL
   });
 
-  console.log(newPost);
 
   newPost.save()
     .then(() => {
@@ -35,7 +34,7 @@ router.post('/', [ensureLoggedIn('/auth/login'), uploadCloud.single('photo')], (
     })
 })
 
-router.get('/', (req, res, next) => {
+router.get('/', [ensureLoggedIn('/auth/login'),isActive()],(req, res, next) => {
   Post.find({author:req.user._id})
     .then(posts => {
       console.log(posts)

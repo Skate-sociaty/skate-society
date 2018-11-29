@@ -22,8 +22,8 @@ function startMap() {
         title
       })
     }
-  let marker;
-  parks.forEach(({position:{lat, lng} = {lat:undefined, lng:undefined}, title="Park"}) => {
+  // let marker;
+  parks.forEach(({position:{lat, lng} = {lat:undefined, lng:undefined}, title=`${parks.title}`}) => {
     if(lat && lng){
       addMarker(lat, lng, title)}
   });
@@ -46,8 +46,7 @@ function startMap() {
 }
 startMap();
 
-// }
-// addMarker();
+
 
 
 
