@@ -16,7 +16,7 @@ const nodemailer=require("nodemailer")
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
-router.get ('/profile',(req,res,next)=>{
+router.get ('/profile',isActive(),(req,res,next)=>{
   res.render('auth/profile')
 })
 
@@ -75,7 +75,7 @@ router.post("/signup", (req, res, next) => {
       email,
       confpass:hashPassConf
     });
-
+      
     newUser.save()
     .then(() => {
       transporter.sendMail({
@@ -83,8 +83,10 @@ router.post("/signup", (req, res, next) => {
         to: email,
         subject: 'Confirmation message',
         text: 'Confirmation message',
-        html: `<h1>Confirmation message</h1>
-        <a href="http://localhost:3000/auth/confirm/${encodeURIComponent(newUser.confpass)}">confirm<a>`,
+        html: `<h1>WELCOME TO SKATE-SOCIETY</h1>
+        <img src="https://cdn.pixabay.com/photo/2015/06/25/16/54/skater-821502_960_720.jpg"></img>
+        <p> To confirm you have logged in our web click in the link below </p>
+        <a href="http://localhost:3000/auth/confirm/${encodeURIComponent(newUser.confpass)}">CONFIRM<a>`,
       }
     ).then(() => {
       res.redirect("/");

@@ -78,7 +78,6 @@ app.use((req, res, next) => {
   app.locals.user = req.user;
   next();
 })
-
 const index = require('./routes/index');
 app.use('/', index);
 

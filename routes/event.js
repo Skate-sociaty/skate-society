@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require("express");
 const router = express.Router();
-const isActive = require("../middleware/confirmEmail");
+
 const Event = require("../models/Events")
+const isUser = require("../middleware/confirmOwner")
+
 
 router.get("/", (req, res, next) => {
     res.render("auth/event");
@@ -24,7 +26,8 @@ router.post("/",(req, res, next) => {
         res.render("auth/event", { message: "Some field is empty" });
         return;
       }
-
+    
+   
     newEvent.save()
     .then((event) => {
       console.log(event);
@@ -32,7 +35,7 @@ router.post("/",(req, res, next) => {
       res.redirect("/event/showevent")
     })
   })
-
+  
   router.get('/showevent',(req,res,next)=>{
     Event.find()
     // .populate("join_us", "username")
@@ -54,6 +57,16 @@ router.post("/",(req, res, next) => {
     .then(event=>{
       res.redirect(`/event/showevent/${event._id}`)
   })
+  })
+  router.get('/deleteevent/:id',isUser(),(req,res,next)=>{
+    Event.findByIdAndRemove(req.params.id)
+    .then(() =>{
+      res.redirect("/event/showevent")
+    })
+  })
+
+  router.get('/stop',(req,res,next)=>{
+    res.render('auth/stop')
   })
   
 module.exports = router;

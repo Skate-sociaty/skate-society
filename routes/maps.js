@@ -16,6 +16,7 @@ router.get("/", (req, res, next) => {
   })
 });
 router.post("/", (req, res, next) => {
+  
   const park = {map, title}= req.body;
   const {lat, lng} = req.body;
   park.position = {lat, lng}
