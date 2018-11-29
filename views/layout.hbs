@@ -5,17 +5,18 @@
 		<title>Strata by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
 		<link rel="stylesheet" href="/stylesheets/main.css" />
 	</head>
 	<body class="is-preload">
-
+    {{#if user}}
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="{{user.image}}" alt="" /></a>
 					<h1><strong>I am Strata</strong>, a super simple<br />
 					responsive site template freebie<br />
-					crafted by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+					crafted by <a href="/auth/logout">LogFuera</a>.</h1>
 				</div>
 			</header>
 
@@ -91,10 +92,34 @@
 					</ul>
 				</div>
 			</footer>
+      {{else}}
+
+ <body>
+
+   <nav>
+    <a href="/">Home</a>
+    {{#if user}}
+      <a href="/auth/logout">Logout</a>
+      <a href="/event/showevent">Show events</a>
+      <a href="/auth/profile">Profile</a>
+    {{else}}
+      <a href="/auth/login">Login</a>
+      <a href="/auth/signup">Signup</a>
+    {{/if}}
+  </nav>
+
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+
+      {{/if}}
 
 		<!-- Scripts -->
 
        {{{body}}}  
+
 			<script src="../../js/jquery.min.js"></script>
 			<script src="../../js/jquery.poptrox.min.js"></script>
 			<script src="../../js/browser.min.js"></script>
