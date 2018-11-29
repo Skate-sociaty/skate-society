@@ -1,0 +1,7 @@
+<h1>{{event.title}}</h1>
+<p>{{event.description}}</p>
+
+{{#each event.join_us}}
+<h4>{{this.username}}</h4>
+{{/each}}
+<a href="/event/join/{{event._id}}">Join us</a>

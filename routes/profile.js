@@ -3,10 +3,8 @@ const router = express.Router();
 const Post = require('../models/Post')
 const User = require('../models/User')
 const uploadCloud = require('../config/cloudinary');
-const {
-  ensureLoggedIn,
-  ensureLoggedOut
-} = require('connect-ensure-login');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const isActive = require("../middleware/confirmEmail");
 
 
 

@@ -72,6 +72,7 @@ require('./passport')(app);
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.key = process.env.GMAPS_KEY;
 app.use((req, res, next) => {
 
   app.locals.user = req.user;
@@ -90,5 +91,10 @@ app.use('/profile',profile);
 const user = require('./routes/user.js');
 app.use('/user',user);
       
+const event = require('./routes/event');
+app.use('/event',event);
+
+const map = require('./routes/maps');
+app.use('/maps',map);
 
 module.exports = app;

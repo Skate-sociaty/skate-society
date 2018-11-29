@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema= new Schema({
@@ -9,8 +9,10 @@ const postSchema= new Schema({
   video:String,
   ratio:Number,
 }, {
-  createdAt: 'created_at',
-  updatedAt: 'updated_at'
-})
-const Post= mongoose.model('Post',postSchema);
-module.exports=Post;
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
+  })
+const Post = mongoose.model('Post', postSchema);
+module.exports = Post;

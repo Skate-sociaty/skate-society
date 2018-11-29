@@ -1,0 +1,36 @@
+<h2>Create Event</h2>
+
+<form action="event" method="POST" id="form-container">
+  <label for="title">Title</label>
+  <input id="title" type="text" name="title" placeholder="Name for your event">
+
+  <br><br>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Description of your event">
+
+  <br><br>
+
+  <label for="place">Place</label>
+  <input id="place" type="text" name="place" placeholder="Ubication of your event">
+
+  <br><br>
+
+  <label for="date">Date</label>
+  <input id="date" type="text" name="date" placeholder="Date for your event">
+
+  <br><br>
+
+  <label for="time">Time</label>
+  <input id="time" type="text" name="time" placeholder="Time for your event">
+
+  <br><br>
+
+  <button>Create</button>
+
+
+</form>
+{{#if message}}
+  <p>{{message}}</p>
+{{/if}}
+  
