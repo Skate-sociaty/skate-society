@@ -27,7 +27,7 @@ router.post('/', [ensureLoggedIn('/auth/login'),isActive(), uploadCloud.single('
 
   newPost.save()
     .then(() => {
-      res.redirect('/profile');
+      res.redirect('/auth/profile');
     })
     .catch((err) => {
       return err
@@ -38,7 +38,7 @@ router.get('/', [ensureLoggedIn('/auth/login'),isActive()],(req, res, next) => {
   Post.find({author:req.user._id})
     .then(posts => {
       console.log(posts)
-      res.render('posts/posts', {posts});
+      res.render('auth/profile', {posts});
     })
 });
 

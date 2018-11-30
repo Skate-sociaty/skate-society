@@ -1,4 +1,181 @@
+ <!DOCTYPE HTML>
 
+<html>
+	<head>
+		<title>Strata by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<link rel="stylesheet" href="/stylesheets/main.css" />
+	</head>
+	<body class="is-preload">
+    {{#if user}}
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="{{user.image}}" alt="" /></a>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+
+				<!-- Two -->
+					<section id="two">
+						<h2>WALL</h2>
+						<div class="row">
+              {{#each allMyPosts}}
+							<article class="col-6 col-12-xsmall work-item">
+								<a href="{{this.picture}}" class="image fit thumb"><img src="{{this.picture}}" alt="" /></a>
+								<h3>{{this.coments}}</h3>
+								<p>{{this.text}}</p>
+							</article>
+              {{/each}}
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section id="three">
+						<h2>Post our Photos</h2>
+						<div class="row">
+							<div class="col-8 col-12-small">
+								<form action="/profile" method="post"  enctype="multipart/form-data">
+									<div class="row gtr-uniform gtr-50">
+                    <div class="col-6 col-12-xsmall"><input type="text" name="content" id="email" placeholder="Photo Name" /></div>
+										<div class="col-6 col-12-xsmall"><input type="text" name="text" id="email" placeholder="Comment" /></div>
+										<div class="col-6 col-12-xsmall"><input class="actions" type="file" name="photo" id="name" placeholder="Upload Photo" /></div>
+									</div>
+                  <ul class="actions">
+									<li><input type="submit" value="Upload" /></li>
+								</ul>
+								</form>
+							</div>
+						</div>
+					</section>
+	
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<form action="/user" method="post"  enctype="multipart/form-data">
+					<ul class="copyright">
+						<input class="actions" type="file" name="image" id="name" placeholder="Upload Photo" />
+						<li><input type="submit" value="Upload" /></li>
+					</ul>
+					</form>
+				</div>
+			</footer>
+      {{else}}
+
+ <body>
+
+   <nav>
+    <a href="/">Home</a>
+    {{#if user}}
+      <a href="/auth/logout">Logout</a>
+      <a href="/event/showevent">Show events</a>
+      <a href="/auth/profile">Profile</a>
+    {{else}}
+      <a href="/auth/login">Login</a>
+      <a href="/auth/signup">Signup</a>
+    {{/if}}
+  </nav>
+
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+
+      {{/if}}
+
+		<!-- Scripts -->
+
+       {{{body}}}  
+
+			<script src="../../js/jquery.min.js"></script>
+			<script src="../../js/jquery.poptrox.min.js"></script>
+			<script src="../../js/browser.min.js"></script>
+			<script src="../../js/breakpoints.min.js"></script>
+			<script src="../../js/util.js"></script>
+			<script src="../../js/main.js"></script>
+
+	</body> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- 
 <h2>Welcome to the posts page</h2>
 <p>{{this.user}}</p>
 <div>
@@ -22,4 +199,4 @@
 <a href="/show-posts">Show Posts</a>
  <a href="/event">Create an event</a>
  <a href="/maps">Show Skateparks</a>
-
+ --}}

@@ -1,5 +1,37 @@
-{{#each events}}
-<h2>{{this.title}}</h2>
+
+   <table>
+    
+        <thead>
+          <tr>
+              <th>Title</th>
+              <th>Place</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Description</th>
+              
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each events}}
+          <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.place}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.time}}</td>
+            <td>{{this.description}}</td>
+           <th><a href="/event/showevent/{{this._id}}">View Event</a></th>
+           <th><a href="/event/deleteevent/{{this._id}}">Delete event</a></th>
+          </tr>
+          {{/each}}
+      </table>
+
+
+
+
+
+
+{{!-- <h2>{{this.title}}</h2>
 
 <h2>{{this.place}}</h2>
 <h2>{{this.date}}</h2>
@@ -10,4 +42,4 @@
 
 <br>
 
-<a href="/event"><button>Create a new event</button></a>
+<a href="/event"><button>Create a new event</button></a> --}}

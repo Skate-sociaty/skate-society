@@ -7,6 +7,7 @@ const transporter=require('../mail/transporter')
 const isActive = require("../middleware/confirmEmail");
 const moment = require("moment");
 const Event = require("../models/Events")
+const Post = require('../models/Post')
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -17,7 +18,10 @@ router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 router.get ('/profile',isActive(),(req,res,next)=>{
-  res.render('auth/profile')
+  Post.find({author: req.user._id}).then(function(allMyPostsPayload){
+    res.render('auth/profile', {allMyPosts: allMyPostsPayload})
+  })
+  
 })
 
 
@@ -32,7 +36,7 @@ router.post("/login", passport.authenticate("local", {
 );
 
 router.get("/signup", (req, res, next) => {
-  
+
   res.render("auth/signup");
 });
 router.get("/pepe",isActive(), (req, res, next) => {
