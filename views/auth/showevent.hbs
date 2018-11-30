@@ -1,7 +1,37 @@
-<h1>{{event.title}}</h1>
+  <table>
+    
+        <thead>
+          <tr>
+              <th>Title</th>  
+              <th>Description</th>
+              <th>Attendees</th>
+              <th><a href="/event/join/{{event._id}}">Join us</a></th>
+              
+          </tr>
+        </thead>
+
+        <tbody>
+          
+          <tr>
+            <td>{{event.title}}</td>
+            <td>{{event.description}}</td>
+            {{#each event.join_us}}
+            <td>{{this.username}}</td>
+            {{/each}}
+          </tr>     
+      </table>
+
+
+
+
+
+
+
+
+{{!-- <h1>{{event.title}}</h1>
 <p>{{event.description}}</p>
 
 {{#each event.join_us}}
 <h4>{{this.username}}</h4>
 {{/each}}
-<a href="/event/join/{{event._id}}">Join us</a>
+<a href="/event/join/{{event._id}}">Join us</a> --}}

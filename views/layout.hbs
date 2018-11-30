@@ -4,22 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <title>{{title}}</title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/styles.css" />
 </head>
 <body>
 
-   <nav>
-    <a href="/">Home</a>
-    {{#if user}}
-      <a href="/auth/logout">Logout</a>
-      <a href="/event/showevent">Show events</a>
-      <a href="/auth/profile">Profile</a>
-    {{else}}
-      <a href="/auth/login">Login</a>
-      <a href="/auth/signup">Signup</a>
-    {{/if}}
+
+	  <nav>
+    <div class="nav-wrapper">
+			
+      <a href="/" class="brand-logo">HOME</a>
+			
+			
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+				{{#if user}}
+				<li><a href="/event">Create an event</a></li>
+				<li><a href="/maps">Show Skateparks</a></li>
+        <li><a href="/auth/profile">Profile</a></li>
+        <li><a href="/event/showevent">Show events</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+				{{else}}
+				<li><a href="/auth/login">Login</a></li>
+				<li><a href="/auth/signup">Signup</a></li>
+				{{/if}}
+      </ul>
+			
+    </div>
   </nav>
+
+
 
 
   {{{body}}}

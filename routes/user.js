@@ -14,7 +14,7 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res, next) => {
   
     req.user.update({image:imageURL})
     .then(() => {
-      res.redirect("/user/view");
+      res.redirect("/auth/profile");
     })
   
 
