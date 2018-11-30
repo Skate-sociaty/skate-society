@@ -49,11 +49,11 @@ let post=[
 
 let event=[
   {
-    title:'String',
-    text:'String',
-    place:'String',
-    date:'String',
-    time:'String',
+    title:'Megaparty',
+    text:'Si lo quuieres flipar apuntate',
+    place:'My house',
+    date:'Según me pille',
+    time:'tarde a ser posible',
     join_us:[]
   }
 ]
